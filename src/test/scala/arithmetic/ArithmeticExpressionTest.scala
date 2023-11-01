@@ -11,5 +11,9 @@ class ArithmeticExpressionTest extends AnyFunSuite {
     val expr2 = ArithmeticExpression.Mult(ArithmeticExpression.Num(1), ArithmeticExpression.Num(3))
     assert(ArithmeticExpression.evaluate(expr2) == 3)
     assert(ArithmeticExpression.pretty(expr2) == "(1 * 3)")
+
+    val expr3 = ArithmeticExpression.Pow(ArithmeticExpression.Num(2), ArithmeticExpression.Num(3))
+    assert(ArithmeticExpression.evaluate(expr3) == 8)
+    assert(ArithmeticExpression.pretty(expr3) == "(2^3)")
   }
 }
