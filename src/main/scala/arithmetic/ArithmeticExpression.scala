@@ -20,6 +20,10 @@ object ArithmeticExpression:
     case Pow(x, y) if evaluate(y) < 0 => 1 / evaluate(x) * evaluate(Pow(x,Plus(x, Num(1))))
     case Pow(x, y) if evaluate(y) == 0 => 1
 
+  def evaluate(expressions: List[ArithmeticExpression]): List[Double] = {
+    expressions.map(evaluate)
+  }
+
 
   def pretty(expression:ArithmeticExpression) : String = expression match
     case Num(value) => value.toString
@@ -29,3 +33,7 @@ object ArithmeticExpression:
     case Div(left, right) => s"(${pretty(left)} / ${pretty(right)})"
     case Pow(num, pow) => s"(${pretty(num)}^${pretty(pow)})"
 
+  def showResults(expressions: List[ArithmeticExpression]): String = {
+    expressions.map { expr => s"${pretty(expr)} = ${evaluate(expr)}"
+    }.mkString("\n") + "\n"
+  }
